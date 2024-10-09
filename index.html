@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Box Model Visual Guide</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2b3e50;
+      font-size: 42px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+      font-size: 20px;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Box Container */
+    .box-model {
+      position: relative;
+      width: 280px;
+      padding: 30px; /* Padding inside the box */
+      border: 12px solid #ff6f61; /* Border surrounding padding */
+      margin: 40px; /* Margin around the box */
+      background-color: #ffecb3; /* Background for content and padding */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      outline: 2px dashed #999; /* Adds a dashed outline for margin */
+    }
+
+    .box-model:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .box-content {
+      background-color: #4caf50;
+      padding: 15px;
+      color: white;
+      font-weight: bold;
+      font-size: 22px;
+      border-radius: 8px;
+      transition: all 0.4s ease;
+    }
+
+    /* Labels */
+    .label {
+      position: absolute;
+      background-color: #2b3e50;
+      color: white;
+      padding: 5px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.4s ease;
+      font-weight: bold;
+      white-space: nowrap;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .box-model:hover .label {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .label:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+    }
+
+    /* Label Positions */
+    .content-label {
+      bottom: 45%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .padding-label {
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 2px dashed #4caf50; /* Adds a border around the padding */
+      padding: 2px 10px;
+    }
+
+    .padding-label:after {
+      top: 100%;
+      left: 50%;
+      border-top-color: #2b3e50;
+      transform: translateX(-50%);
+    }
+
+    .border-label {
+      top: -75px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 2px dashed #ff6f61; /* Adds a border around the border */
+      padding: 2px 10px;
+    }
+
+    .border-label:after {
+      top: 100%;
+      left: 50%;
+      border-top-color: #2b3e50;
+      transform: translateX(-50%);
+    }
+
+    .margin-label {
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 2px dashed #999; /* Adds a border around the margin */
+      padding: 2px 10px;
+    }
+
+    .margin-label:after {
+      top: 100%;
+      left: 50%;
+      border-top-color: #2b3e50;
+      transform: translateX(-50%);
+    }
+
+    /* Explanation section */
+    .explanation {
+      max-width: 800px;
+      text-align: left;
+      margin-top: 40px;
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
+    }
+
+    .explanation h2 {
+      font-size: 28px;
+      color: #2b3e50;
+    }
+
+    .explanation p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .example-code {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      color: #333;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 50px;
+      color: #777;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+
+      .box-model {
+        width: 90%;
+        margin: 20px;
+      }
+
+      .explanation {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Box Model Visual Guide</h1>
+  <p>Hover over the box below to explore the different parts of the box model—content, padding, border, and margin. Each part is clearly labeled to help you understand how CSS affects layout.</p>
+
+  <div class="content-wrapper">
+    <div class="box-model">
+      <div class="box-content">Content</div>
+
+      <!-- Labels for each part of the box model -->
+      <span class="label content-label">Content</span>
+      <span class="label padding-label">Padding: 30px</span>
+      <span class="label border-label">Border: 12px</span>
+      <span class="label margin-label">Margin: 40px</span>
+    </div>
+
+    <!-- Detailed explanation of the box model -->
+    <div class="explanation">
+      <h2>Understanding the CSS Box Model</h2>
+      <p>
+        The CSS Box Model defines how the layout of an element is structured. Every element in CSS is a rectangular box, consisting of several layers:
+      </p>
+
+      <!-- Content explanation -->
+      <h3>Content</h3>
+      <p>
+        The **content** area contains the
+      <p>
+        The **content** area contains the actual content of the element, such as text, images, or other media. The width and height properties define the size of the content area.
+      </p>
+      <pre class="example-code">
+      .box {
+        width: 200px;   /* Content width */
+        height: 150px;  /* Content height */
+      }
+      </pre>
+
+      <!-- Padding explanation -->
+      <h3>Padding</h3>
+      <p>
+        **Padding** is the space between the content and the border. It increases the internal space inside the box and pushes the content away from the edges. Padding does not affect the external layout but makes the box larger.
+      </p>
+      <pre class="example-code">
+      .box {
+        padding: 30px;  /* Adds space between the content and the border */
+      }
+      </pre>
+
+      <!-- Border explanation -->
+      <h3>Border</h3>
+      <p>
+        The **border** surrounds the padding and content. It is used to define the visible edge of the box. You can style borders by adjusting their width, color, and style (e.g., solid, dashed, etc.).
+      </p>
+      <pre class="example-code">
+      .box {
+        border: 12px solid #ff6f61;  /* Defines a 12px solid border */
+      }
+      </pre>
+
+      <!-- Margin explanation -->
+      <h3>Margin</h3>
+      <p>
+        **Margin** is the space outside the border. It separates the element from its neighboring elements, providing spacing around the box. Margins collapse between adjacent elements if both have margins.
+      </p>
+      <pre class="example-code">
+      .box {
+        margin: 40px;  /* Creates space outside the border */
+      }
+      </pre>
+
+      <p>By understanding the box model, you can control the layout of elements with precision, ensuring the right amount of space between content, padding, borders, and margins.</p>
+    </div>
+
+  </div>
+
+  <div class="footer">Mastering the box model is key to creating well-structured and visually pleasing layouts with CSS!</div>
+
+</body>
+</html>
